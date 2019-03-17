@@ -3,12 +3,10 @@ package com.deghat.farhad.codingtest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.deghat.farhad.data.repository.CarRepositoryImpl
+import com.deghat.farhad.domain.model.BuiltDates
 import com.deghat.farhad.domain.model.MainTypes
 import com.deghat.farhad.domain.model.Manufacturers
-import com.deghat.farhad.domain.usecase.GetMainTypes
-import com.deghat.farhad.domain.usecase.GetMainTypesParams
-import com.deghat.farhad.domain.usecase.GetManufacturer
-import com.deghat.farhad.domain.usecase.GetManufacturerParams
+import com.deghat.farhad.domain.usecase.*
 import com.errorizers.domain.usecase.base.DefaultObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -44,5 +42,17 @@ class ActMain : AppCompatActivity() {
 
         GetMainTypes(CarRepositoryImpl(), Schedulers.io(), AndroidSchedulers.mainThread())
                 .execute(mainTypesObserver, getMainTypesParams)*/
+
+        /*val builtDatesObserver = object: DefaultObserver<BuiltDates>() {
+            override fun onNext(t: BuiltDates) {
+                super.onNext(t)
+                println(t.wkda)
+            }
+        }
+
+        val getBuiltDatesParams = GetBuiltDatesParams(107,"Arnage")
+
+        GetBuiltDates(CarRepositoryImpl(), Schedulers.io(), AndroidSchedulers.mainThread())
+                .execute(builtDatesObserver, getBuiltDatesParams)*/
     }
 }

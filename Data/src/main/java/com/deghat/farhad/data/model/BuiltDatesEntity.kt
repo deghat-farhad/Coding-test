@@ -1,5 +1,5 @@
 package com.deghat.farhad.data.model
 
-data class BuiltDates(
+data class BuiltDatesEntity(
         var wkda: Map<String, String> = mapOf()
 )
