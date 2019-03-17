@@ -1,6 +1,6 @@
 package com.deghat.farhad.data.model
 
-data class CarTypes(
+data class manufacturer(
         var page:Int,
         var pageSize: Int,
         var totalPageCount: Int,
