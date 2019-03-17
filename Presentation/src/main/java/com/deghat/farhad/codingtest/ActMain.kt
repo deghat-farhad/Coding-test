@@ -11,7 +11,7 @@ class ActMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_main)
 
-        Remote().getCarTypes(0, 15)
+        Remote().getMainType(107, 0, 15)
                 .subscribeOn(Schedulers.io())
                 .subscribe{ println(it.wkda)}
     }
