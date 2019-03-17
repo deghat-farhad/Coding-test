@@ -1,5 +1,6 @@
 package com.deghat.farhad.data.remote
 
+import com.deghat.farhad.data.model.BuiltDates
 import com.deghat.farhad.data.model.CarTypes
 import com.deghat.farhad.data.model.MainTypes
 import io.reactivex.Observable
@@ -15,5 +16,9 @@ class Remote {
     fun getMainType(manufacturerId: Int, pageNumber: Int, pageSize: Int): Observable<MainTypes>{
         return ServiceGenerator.carService
                 .getMainTypes(manufacturerId, pageNumber, pageSize, WA_KEY)
+    }
+
+    fun getBuiltDates(manufacturerId: Int, mainType: String): Observable<BuiltDates>{
+        return ServiceGenerator.carService.getBuiltDates(manufacturerId, mainType, WA_KEY)
     }
 }

@@ -11,7 +11,7 @@ class ActMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_main)
 
-        Remote().getMainType(107, 0, 15)
+        Remote().getBuiltDates(107, "Arnage")
                 .subscribeOn(Schedulers.io())
                 .subscribe{ println(it.wkda)}
     }

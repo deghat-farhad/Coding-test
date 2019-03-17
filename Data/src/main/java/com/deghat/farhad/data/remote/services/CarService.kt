@@ -1,5 +1,6 @@
 package com.deghat.farhad.data.remote.services
 
+import com.deghat.farhad.data.model.BuiltDates
 import com.deghat.farhad.data.model.CarTypes
 import com.deghat.farhad.data.model.MainTypes
 import io.reactivex.Observable
@@ -18,4 +19,9 @@ interface CarService {
                      @Query("page") pageNumber: Int,
                      @Query("pageSize") pageSize: Int,
                      @Query("wa_key") waKey: String): Observable<MainTypes>
+
+    @GET("v1/car-types/built-dates")
+    fun getBuiltDates(@Query("manufacturer") manufacturerId: Int,
+                      @Query("main-type") mainType: String,
+                      @Query("wa_key") waKey: String): Observable<BuiltDates>
 }
