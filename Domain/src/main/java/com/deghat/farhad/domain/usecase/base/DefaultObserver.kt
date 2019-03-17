@@ -1,4 +1,4 @@
-package com.errorizers.domain.usecase.base
+package com.deghat.farhad.domain.usecase.base
 
 import io.reactivex.observers.DisposableObserver
 

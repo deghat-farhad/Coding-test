@@ -2,7 +2,7 @@ package com.deghat.farhad.domain.usecase
 
 import com.deghat.farhad.domain.model.MainTypes
 import com.deghat.farhad.domain.repository.CarRepository
-import com.errorizers.domain.usecase.base.UseCase
+import com.deghat.farhad.domain.usecase.base.UseCase
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 
