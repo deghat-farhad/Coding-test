@@ -2,7 +2,7 @@ package com.deghat.farhad.data.remote.services
 
 import com.deghat.farhad.data.model.BuiltDates
 import com.deghat.farhad.data.model.ManufacturersEntity
-import com.deghat.farhad.data.model.MainTypes
+import com.deghat.farhad.data.model.MainTypesEntity
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,7 +18,7 @@ interface CarService {
     fun getMainTypes(@Query("manufacturer") manufacturerId: Int,
                      @Query("page") pageNumber: Int,
                      @Query("pageSize") pageSize: Int,
-                     @Query("wa_key") waKey: String): Observable<MainTypes>
+                     @Query("wa_key") waKey: String): Observable<MainTypesEntity>
 
     @GET("v1/car-types/built-dates")
     fun getBuiltDates(@Query("manufacturer") manufacturerId: Int,

@@ -2,7 +2,7 @@ package com.deghat.farhad.data.remote
 
 import com.deghat.farhad.data.model.BuiltDates
 import com.deghat.farhad.data.model.ManufacturersEntity
-import com.deghat.farhad.data.model.MainTypes
+import com.deghat.farhad.data.model.MainTypesEntity
 import io.reactivex.Observable
 
 const val BASE_URL = "***REMOVED***"
@@ -13,7 +13,7 @@ class Remote {
         return ServiceGenerator.carService.getManufacturer(pageNumber, pageSize, WA_KEY)
     }
 
-    fun getMainType(manufacturerId: Int, pageNumber: Int, pageSize: Int): Observable<MainTypes>{
+    fun getMainType(manufacturerId: Int, pageNumber: Int, pageSize: Int): Observable<MainTypesEntity>{
         return ServiceGenerator.carService
                 .getMainTypes(manufacturerId, pageNumber, pageSize, WA_KEY)
     }
