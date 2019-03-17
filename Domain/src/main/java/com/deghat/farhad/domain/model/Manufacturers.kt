@@ -1,6 +1,6 @@
-package com.deghat.farhad.data.model
+package com.deghat.farhad.domain.model
 
-data class Manufacturer(
+data class Manufacturers(
         var page:Int,
         var pageSize: Int,
         var totalPageCount: Int,
