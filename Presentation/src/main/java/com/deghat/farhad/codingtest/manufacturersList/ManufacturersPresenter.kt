@@ -1,5 +1,7 @@
 package com.deghat.farhad.codingtest.manufacturersList
 
+import com.deghat.farhad.codingtest.model.ManufacturersItem
+import com.deghat.farhad.codingtest.model.mapper.ManufacturersItemMapper
 import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.Manufacturers
 import com.deghat.farhad.domain.usecase.GetManufacturers
@@ -12,57 +14,77 @@ const val ITEMS_ON_EACH_PAGE = 15
 
 class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
 
-    private val inProgressUsecases = arrayListOf<GetManufacturers>()
-    private val currentPage = 0
+    private val inProgressUseCases = arrayListOf<GetManufacturers>()
+    private var nextPage = 0
+    private var totalPages = 0
+    private var isFirstLoad = true
+    private var isLoading = false
+    private val items = ArrayList<ManufacturersItem.Manufacturer>()
 
-    fun onCreate(){
-        loadItems(0, ITEMS_ON_EACH_PAGE)
+    fun initiate(){
+        manufacturersView.setItems(items)
+        loadMore()
     }
 
-    fun onPageChanged(page: Int){
-        loadItems(page, ITEMS_ON_EACH_PAGE)
+    fun loadMore(){
+        if(!isLoading) {
+            if (isFirstLoad || (nextPage < totalPages))
+                loadItems(nextPage, ITEMS_ON_EACH_PAGE)
+        }
     }
 
-    fun onPause(){
-        for(item in inProgressUsecases)
-            item.dispose()
+    fun destroy(){
+        for(inProgressUseCase in inProgressUseCases)
+            inProgressUseCase.dispose()
     }
 
-    private fun loadItems(pageNumber: Int, pageSize: Int){
+    private fun loadItems(pageNumber: Int, pageSize: Int) {
 
-        manufacturersView.showProgress()
-
-        val manufacturerObserver = object: DefaultObserver<Manufacturers>() {
+        val manufacturerObserver = object : DefaultObserver<Manufacturers>() {
 
             override fun onNext(it: Manufacturers) {
                 super.onNext(it)
-                manufacturersView.setItems(it.wkda)
-                if(it.totalPageCount > 1) {
-                    manufacturersView.showPagination()
-                    manufacturersView.setSelectedPage()
-                }else{
-                    manufacturersView.hidePagination()
-                }
+
+                val manufacturersItem = ManufacturersItemMapper().mapToPresentation(it)
+
+                val lastItemPosition = items.size
+                val newItemsCount = manufacturersItem.wkda.size
+                items.addAll(manufacturersItem.wkda)
+
+                manufacturersView.notifyItemRangeInserted(lastItemPosition, newItemsCount)
+
+                nextPage = manufacturersItem.page + 1
+                totalPages = manufacturersItem.totalPageCount
             }
 
             override fun onComplete() {
                 super.onComplete()
+
                 manufacturersView.hideProgress()
+                isLoading = false
+
+                if (isFirstLoad)
+                    isFirstLoad = false
             }
 
             override fun onError(e: Throwable) {
                 super.onError(e)
+
                 manufacturersView.hideProgress()
                 manufacturersView.showConnectionError()
+                isLoading = false
             }
         }
 
         val getManufacturerParams = GetManufacturerParams(pageNumber, pageSize)
 
-        val getManufacturers = GetManufacturers(CarRepositoryImpl(), Schedulers.io(), AndroidSchedulers.mainThread())
+        val getManufacturers = GetManufacturers(CarRepositoryImpl(),
+                Schedulers.io(), AndroidSchedulers.mainThread())
 
-        inProgressUsecases.add(getManufacturers)
+        inProgressUseCases.add(getManufacturers)
 
+        isLoading = true
+        manufacturersView.showProgress()
         getManufacturers.execute(manufacturerObserver, getManufacturerParams)
 
     }

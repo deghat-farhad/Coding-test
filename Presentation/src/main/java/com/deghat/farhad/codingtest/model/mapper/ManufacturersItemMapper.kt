@@ -5,11 +5,18 @@ import com.deghat.farhad.domain.model.Manufacturers
 
 class ManufacturersItemMapper {
     fun mapToPresentation(manufacturers: Manufacturers): ManufacturersItem{
-        return ManufacturersItem(
+        val manufacturersItem = ManufacturersItem(
                 manufacturers.page,
                 manufacturers.pageSize,
-                manufacturers.totalPageCount,
-                HashMap(manufacturers.wkda)
+                manufacturers.totalPageCount
         )
+
+        for(manufacturer in manufacturers.wkda.toSortedMap()){
+            manufacturersItem.wkda.add(
+                    ManufacturersItem.Manufacturer(manufacturer.key, manufacturer.value))
+        }
+
+
+        return manufacturersItem
     }
 }

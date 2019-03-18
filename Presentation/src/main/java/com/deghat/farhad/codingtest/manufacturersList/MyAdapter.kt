@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.deghat.farhad.codingtest.R
-import com.deghat.farhad.domain.model.Manufacturers
+import com.deghat.farhad.codingtest.model.ManufacturersItem
 
 class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    private val wkda: MutableMap<String, String> = mutableMapOf()
-    private val collection = ArrayList(wkda.values)
+    lateinit var wkda: ArrayList<ManufacturersItem.Manufacturer>
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -36,17 +35,17 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.txtView.text = collection[position]
+        //val itemKey = wkda.keys.toList()[position]
+        holder.txtView.text = wkda[position].value
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = collection.size
+    override fun getItemCount() = wkda.size
 
-    fun setItems(items: Map<String, String>){
-        wkda.clear()
-        wkda.putAll(items)
-        collection.clear()
-        collection.addAll(wkda.values)
+    fun setItems(manufacturers: ArrayList<ManufacturersItem.Manufacturer>){
+        wkda = manufacturers
         notifyDataSetChanged()
     }
+
+
 }

@@ -4,5 +4,10 @@ data class ManufacturersItem(
         var page:Int,
         var pageSize: Int,
         var totalPageCount: Int,
-        var wkda: Map<String, String> = mapOf()
-)
+        var wkda: ArrayList<Manufacturer> = arrayListOf()
+){
+    data class Manufacturer(
+            val key: String,
+            val value: String
+    )
+}

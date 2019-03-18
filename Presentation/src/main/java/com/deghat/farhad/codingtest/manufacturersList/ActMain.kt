@@ -8,25 +8,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.deghat.farhad.codingtest.CommonView
 import com.deghat.farhad.codingtest.R
-import com.deghat.farhad.codingtest.mainTypesList.MainTypesPresenter
-import com.deghat.farhad.codingtest.mainTypesList.MainTypesView
-import com.deghat.farhad.data.repository.CarRepositoryImpl
-import com.deghat.farhad.domain.model.Manufacturers
-import com.deghat.farhad.domain.usecase.GetManufacturers
-import com.deghat.farhad.domain.usecase.GetManufacturerParams
-import com.deghat.farhad.domain.usecase.base.DefaultObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.deghat.farhad.codingtest.model.ManufacturersItem
 
-class ActMain : AppCompatActivity(), MainTypesView {
+class ActMain : AppCompatActivity(), ManufacturersView {
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = MyAdapter()
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var progressBar: ProgressBar
-    private val presenter = MainTypesPresenter(107,this)
+    private val presenter = ManufacturersPresenter(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -49,7 +40,7 @@ class ActMain : AppCompatActivity(), MainTypesView {
 
         presenter.initiate()
 
-        findViewById<Button>(R.id.button).setOnClickListener { presenter.search("fly") }
+        findViewById<Button>(R.id.button).setOnClickListener { presenter.loadMore() }
         /*val manufacturerObserver = object: DefaultObserver<Manufacturers>() {
             override fun onNext(t: Manufacturers) {
                 super.onNext(t)
@@ -112,8 +103,8 @@ class ActMain : AppCompatActivity(), MainTypesView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun setItems(Items: Map<String, String>) {
-        adapter.setItems(Items)
+    override fun setItems(manufacturers: ArrayList<ManufacturersItem.Manufacturer>) {
+        adapter.setItems(manufacturers)
     }
 
     override fun updateItems() {
@@ -124,15 +115,11 @@ class ActMain : AppCompatActivity(), MainTypesView {
 
     }
 
-    override fun showSearchView() {
-
+    override fun notifyItemRangeInserted(positionStart: Int, itemCount: Int) {
+        adapter.notifyItemRangeInserted(positionStart, itemCount)
     }
 
-    override fun hideSearchView() {
-
-    }
-
-    override fun setSummary() {
+    override fun setItems(Items: Map<String, String>) {
 
     }
 }
