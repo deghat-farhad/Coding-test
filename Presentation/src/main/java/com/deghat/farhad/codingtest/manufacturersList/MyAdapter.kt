@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.deghat.farhad.codingtest.R
+import com.deghat.farhad.codingtest.model.MainTypesItem
 import com.deghat.farhad.codingtest.model.ManufacturersItem
 
 class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    lateinit var wkda: ArrayList<ManufacturersItem.Manufacturer>
+    lateinit var wkda: ArrayList<MainTypesItem.MainType>
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -42,8 +43,8 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = wkda.size
 
-    fun setItems(manufacturers: ArrayList<ManufacturersItem.Manufacturer>){
-        wkda = manufacturers
+    fun setItems(mainTypes: ArrayList<MainTypesItem.MainType>){
+        wkda = mainTypes
         notifyDataSetChanged()
     }
 

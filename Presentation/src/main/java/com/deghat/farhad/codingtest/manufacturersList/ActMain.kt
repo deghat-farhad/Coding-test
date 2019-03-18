@@ -9,15 +9,18 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.deghat.farhad.codingtest.R
+import com.deghat.farhad.codingtest.mainTypesList.MainTypesPresenter
+import com.deghat.farhad.codingtest.mainTypesList.MainTypesView
+import com.deghat.farhad.codingtest.model.MainTypesItem
 import com.deghat.farhad.codingtest.model.ManufacturersItem
 
-class ActMain : AppCompatActivity(), ManufacturersView {
+class ActMain : AppCompatActivity(), MainTypesView {
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = MyAdapter()
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var progressBar: ProgressBar
-    private val presenter = ManufacturersPresenter(this)
+    private val presenter = MainTypesPresenter(107, this)
 
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -40,7 +43,7 @@ class ActMain : AppCompatActivity(), ManufacturersView {
 
         presenter.initiate()
 
-        findViewById<Button>(R.id.button).setOnClickListener { presenter.loadMore() }
+        findViewById<Button>(R.id.button).setOnClickListener { presenter.search("on") }
         /*val manufacturerObserver = object: DefaultObserver<Manufacturers>() {
             override fun onNext(t: Manufacturers) {
                 super.onNext(t)
@@ -103,8 +106,8 @@ class ActMain : AppCompatActivity(), ManufacturersView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun setItems(manufacturers: ArrayList<ManufacturersItem.Manufacturer>) {
-        adapter.setItems(manufacturers)
+    override fun setItems(mainTypes: ArrayList<MainTypesItem.MainType>) {
+        adapter.setItems(mainTypes)
     }
 
     override fun updateItems() {
@@ -115,11 +118,15 @@ class ActMain : AppCompatActivity(), ManufacturersView {
 
     }
 
-    override fun notifyItemRangeInserted(positionStart: Int, itemCount: Int) {
-        adapter.notifyItemRangeInserted(positionStart, itemCount)
+    override fun showSearchView() {
+
     }
 
-    override fun setItems(Items: Map<String, String>) {
+    override fun hideSearchView() {
 
+    }
+
+    override fun setSummary() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
