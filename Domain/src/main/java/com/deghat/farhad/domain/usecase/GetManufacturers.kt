@@ -6,7 +6,7 @@ import com.deghat.farhad.domain.usecase.base.UseCase
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 
-class GetManufacturer(
+class GetManufacturers(
         private val carRepository: CarRepository,
         executorThread: Scheduler,
         uiThread: Scheduler)

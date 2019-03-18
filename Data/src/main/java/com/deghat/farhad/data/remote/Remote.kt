@@ -5,8 +5,9 @@ import com.deghat.farhad.data.model.ManufacturersEntity
 import com.deghat.farhad.data.model.MainTypesEntity
 import io.reactivex.Observable
 
-const val BASE_URL = "***REMOVED***"
-const val WA_KEY = "***REMOVED***"
+//const val BASE_URL = "***REMOVED***"
+const val WA_KEY = "sadfasdfasfd"//"***REMOVED***"
+const val BASE_URL = "http://www.mocky.io/v2/"
 
 class Remote {
     fun getManufacturer(pageNumber: Int, pageSize: Int): Observable<ManufacturersEntity>{
