@@ -7,7 +7,7 @@ abstract class DefaultObserver<T>: DisposableObserver<T>() {
         println("complete")
     }
 
-    override fun onNext(t: T) {
+    override fun onNext(it: T) {
 
     }
 

@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.deghat.farhad.codingtest.CommonView
 import com.deghat.farhad.codingtest.R
+import com.deghat.farhad.codingtest.mainTypesList.MainTypesPresenter
+import com.deghat.farhad.codingtest.mainTypesList.MainTypesView
 import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.Manufacturers
 import com.deghat.farhad.domain.usecase.GetManufacturers
@@ -17,13 +20,13 @@ import com.deghat.farhad.domain.usecase.base.DefaultObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class ActMain : AppCompatActivity(), ManufacturersView {
+class ActMain : AppCompatActivity(), MainTypesView {
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = MyAdapter()
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var progressBar: ProgressBar
-    private val presenter = ManufacturersPresenter(this)
+    private val presenter = MainTypesPresenter(107,this)
 
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -44,8 +47,9 @@ class ActMain : AppCompatActivity(), ManufacturersView {
         }
         recyclerView.adapter = adapter
 
-        presenter.onCreate()
+        presenter.initiate()
 
+        findViewById<Button>(R.id.button).setOnClickListener { presenter.search("fly") }
         /*val manufacturerObserver = object: DefaultObserver<Manufacturers>() {
             override fun onNext(t: Manufacturers) {
                 super.onNext(t)
@@ -87,7 +91,7 @@ class ActMain : AppCompatActivity(), ManufacturersView {
 
     override fun onPause() {
         super.onPause()
-        presenter.onPause()
+        presenter.destroy()
     }
 
     override fun showProgress() {
@@ -120,15 +124,15 @@ class ActMain : AppCompatActivity(), ManufacturersView {
 
     }
 
-    override fun showPagination() {
+    override fun showSearchView() {
 
     }
 
-    override fun hidePagination() {
+    override fun hideSearchView() {
 
     }
 
-    override fun setSelectedPage() {
+    override fun setSummary() {
 
     }
 }

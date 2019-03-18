@@ -1,6 +1,8 @@
 package com.deghat.farhad.codingtest.mainTypesList
 
-interface MainTypesView {
+import com.deghat.farhad.codingtest.CommonView
+
+interface MainTypesView: CommonView {
     fun showSearchView()
     fun hideSearchView()
     fun setSummary()

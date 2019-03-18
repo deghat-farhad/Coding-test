@@ -18,6 +18,6 @@ class GetMainTypes(
 
 data class GetMainTypesParams(
     val manufacturerId: Int,
-    val pageNumber: Int,
-    val pageSize: Int
+    val pageNumber: Int = 0,
+    val pageSize: Int = 0 //default value to get all items in a single page
 )

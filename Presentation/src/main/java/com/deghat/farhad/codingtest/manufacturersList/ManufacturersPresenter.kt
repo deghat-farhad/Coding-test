@@ -1,6 +1,5 @@
 package com.deghat.farhad.codingtest.manufacturersList
 
-import com.deghat.farhad.codingtest.CommonView
 import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.Manufacturers
 import com.deghat.farhad.domain.usecase.GetManufacturers
@@ -35,10 +34,10 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
 
         val manufacturerObserver = object: DefaultObserver<Manufacturers>() {
 
-            override fun onNext(t: Manufacturers) {
-                super.onNext(t)
-                manufacturersView.setItems(t.wkda)
-                if(t.totalPageCount > 1) {
+            override fun onNext(it: Manufacturers) {
+                super.onNext(it)
+                manufacturersView.setItems(it.wkda)
+                if(it.totalPageCount > 1) {
                     manufacturersView.showPagination()
                     manufacturersView.setSelectedPage()
                 }else{
@@ -60,7 +59,11 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
 
         val getManufacturerParams = GetManufacturerParams(pageNumber, pageSize)
 
-        GetManufacturers(CarRepositoryImpl(), Schedulers.io(), AndroidSchedulers.mainThread())
-                .execute(manufacturerObserver, getManufacturerParams)
+        val getManufacturers = GetManufacturers(CarRepositoryImpl(), Schedulers.io(), AndroidSchedulers.mainThread())
+
+        inProgressUsecases.add(getManufacturers)
+
+        getManufacturers.execute(manufacturerObserver, getManufacturerParams)
+
     }
 }
