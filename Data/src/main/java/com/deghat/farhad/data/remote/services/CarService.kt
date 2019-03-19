@@ -9,21 +9,21 @@ import retrofit2.http.Query
 
 interface CarService {
 
-    //@GET("v1/car-types/manufacturer")
-    @GET("5c90e59a33000018246499b2")
+    @GET("v1/car-types/manufacturer")
+    //@GET("5c90e59a33000018246499b2")
     fun getManufacturer(@Query("page") pageNumber: Int,
                         @Query("pageSize") pageSize: Int,
                         @Query("wa_key") waKey: String): Observable<ManufacturersEntity>
 
-    //@GET("v1/car-types/main-types")
-    @GET("5c8f2df9300000962b1b1100")
+    @GET("v1/car-types/main-types")
+    //@GET("5c8f2df9300000962b1b1100")
     fun getMainTypes(@Query("manufacturer") manufacturerId: String,
                      @Query("page") pageNumber: Int,
                      @Query("pageSize") pageSize: Int,
                      @Query("wa_key") waKey: String): Observable<MainTypesEntity>
 
-    //@GET("v1/car-types/built-dates")
-    @GET("5c8f2ec4300000152a1b1104")
+    @GET("v1/car-types/built-dates")
+    //@GET("5c8f2ec4300000152a1b1104")
     fun getBuiltDates(@Query("manufacturer") manufacturerId: String,
                       @Query("main-type") mainType: String,
                       @Query("wa_key") waKey: String): Observable<BuiltDatesEntity>
