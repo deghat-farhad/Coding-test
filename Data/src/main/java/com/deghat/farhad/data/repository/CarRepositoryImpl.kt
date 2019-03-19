@@ -15,7 +15,7 @@ class CarRepositoryImpl: CarRepository {
         return Remote().getManufacturer(pageNumber, pageSize).map { ManufacturersMapper().mapToDomain(it) }
     }
 
-    override fun getMainTypes(manufacturerId: Int, pageNumber: Int, pageSize: Int): Observable<MainTypes> {
+    override fun getMainTypes(manufacturerId: String, pageNumber: Int, pageSize: Int): Observable<MainTypes> {
         return Remote().getMainType(manufacturerId, pageNumber, pageSize).map { MainTypesMapper().mapToDomain(it) }
     }
 

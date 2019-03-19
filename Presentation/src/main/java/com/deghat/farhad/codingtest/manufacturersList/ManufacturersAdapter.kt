@@ -51,7 +51,7 @@ class ManufacturersAdapter(
                 val manufacturerHolder = holder as ManufacturerHolder
                 manufacturerHolder.txtViewManufacturer.text = wkda[position].value
                 manufacturerHolder.manufacturerHolderRoot.setOnClickListener {
-                    onItemClickListener(wkda[position].value)
+                    onItemClickListener(wkda[position].key)
                 }
             }
             HolderType.ERROR.value ->
@@ -74,11 +74,6 @@ class ManufacturersAdapter(
 
             else -> HolderType.ODD.value
         }
-    }
-
-    fun setItems(mainTypes: ArrayList<ManufacturersItem.Manufacturer>) {
-        wkda = mainTypes
-        notifyDataSetChanged()
     }
 
     fun hideProgress() {

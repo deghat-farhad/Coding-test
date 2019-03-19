@@ -24,7 +24,6 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
     val items = ArrayList<ManufacturersItem.Manufacturer>()
 
     fun initiate(){
-        manufacturersView.setItems(items)
         loadMore()
     }
 

@@ -9,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.deghat.farhad.codingtest.R
+import com.deghat.farhad.codingtest.mainTypesList.FragMainTypesList
 
 import com.deghat.farhad.codingtest.model.ManufacturersItem
+
+const val BUNDLE_SELECTED_MANUFACTURE_KEY = "selectedManufactureId"
 
 class FragManufacturerList: Fragment(), ManufacturersView{
 
@@ -70,10 +73,6 @@ class FragManufacturerList: Fragment(), ManufacturersView{
         recyclerAdapter.notifyItemRangeInserted(positionStart, itemCount)
     }
 
-    override fun setItems(manufacturers: ArrayList<ManufacturersItem.Manufacturer>) {
-        recyclerAdapter.setItems(manufacturers)
-    }
-
     override fun showProgress() {
         if(recyclerAdapter.itemCount > 0) {
             recyclerAdapter.hideError()
@@ -117,7 +116,22 @@ class FragManufacturerList: Fragment(), ManufacturersView{
     }
 
     override fun navigateToNextPage(selectedManufacturer: String) {
-        Toast.makeText(this.context, selectedManufacturer, Toast.LENGTH_SHORT).show()
+
+        val fragMainTypesList = FragMainTypesList()
+        val bundle = Bundle()
+        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_KEY, selectedManufacturer)
+        fragMainTypesList.arguments = bundle
+
+        fragmentManager?.beginTransaction()
+                ?.setCustomAnimations(
+                        R.anim.slide_left_enter,
+                        R.anim.slide_left_exit,
+                        R.anim.slide_right_enter,
+                        R.anim.slide_right_exit)
+                ?.replace(R.id.frameLayout, fragMainTypesList
+                , getString(R.string.fragMainTypesListTag))
+        ?.addToBackStack(getString(R.string.fragMainTypesListTag))
+        ?.commit()
     }
 
     override fun onStop() {

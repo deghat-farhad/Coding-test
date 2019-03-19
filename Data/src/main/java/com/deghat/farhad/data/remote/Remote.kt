@@ -14,7 +14,7 @@ class Remote {
         return ServiceGenerator.carService.getManufacturer(pageNumber, pageSize, WA_KEY)
     }
 
-    fun getMainType(manufacturerId: Int, pageNumber: Int, pageSize: Int): Observable<MainTypesEntity>{
+    fun getMainType(manufacturerId: String, pageNumber: Int, pageSize: Int): Observable<MainTypesEntity>{
         return ServiceGenerator.carService
                 .getMainTypes(manufacturerId, pageNumber, pageSize, WA_KEY)
     }

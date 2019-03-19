@@ -11,11 +11,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class MainTypesPresenter(private val manufacturerId: Int,
+class MainTypesPresenter(private val manufacturerId: String,
                          private val mainTypesView: MainTypesView) {
 
     private val inProgressUseCases = arrayListOf<GetMainTypes>()
-    private val items = ArrayList<MainTypesItem.MainType>()
+    val items = ArrayList<MainTypesItem.MainType>()
 
     fun initiate() {
         mainTypesView.setItems(items)
@@ -32,7 +32,11 @@ class MainTypesPresenter(private val manufacturerId: Int,
         showThese(ArrayList(searchResults))
     }
 
-    private fun loadItems() {
+    fun onItemClick (selectedMainType: String){
+
+    }
+
+    fun loadItems() {
 
         mainTypesView.hideSearchView()
         mainTypesView.showProgress()
