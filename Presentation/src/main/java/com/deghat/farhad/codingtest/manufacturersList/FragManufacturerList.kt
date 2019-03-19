@@ -11,9 +11,8 @@ import android.widget.*
 import com.deghat.farhad.codingtest.R
 import com.deghat.farhad.codingtest.mainTypesList.FragMainTypesList
 
-import com.deghat.farhad.codingtest.model.ManufacturersItem
-
 const val BUNDLE_SELECTED_MANUFACTURE_KEY = "selectedManufactureId"
+const val BUNDLE_SELECTED_MANUFACTURE_NAME = "selectedManufactureValue"
 
 class FragManufacturerList: Fragment(), ManufacturersView{
 
@@ -115,11 +114,12 @@ class FragManufacturerList: Fragment(), ManufacturersView{
         recyclerAdapter.hideError()
     }
 
-    override fun navigateToNextPage(selectedManufacturer: String) {
+    override fun navigateToNextPage(selectedManufacturerId: String, selectedManufacturerName: String) {
 
         val fragMainTypesList = FragMainTypesList()
         val bundle = Bundle()
-        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_KEY, selectedManufacturer)
+        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_KEY, selectedManufacturerId)
+        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_NAME, selectedManufacturerName)
         fragMainTypesList.arguments = bundle
 
         fragmentManager?.beginTransaction()

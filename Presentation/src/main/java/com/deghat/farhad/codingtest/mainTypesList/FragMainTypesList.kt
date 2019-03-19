@@ -13,6 +13,7 @@ import com.deghat.farhad.codingtest.R
 import com.deghat.farhad.codingtest.builtDatesList.FragBuildDates
 import com.deghat.farhad.codingtest.model.MainTypesItem
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_KEY
+import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_NAME
 
 const val BUNDLE_SELECTED_MAIN_TYPE_KEY = "selectedMainType"
 class FragMainTypesList: Fragment(), MainTypesView {
@@ -34,7 +35,8 @@ class FragMainTypesList: Fragment(), MainTypesView {
         val bundle = this.arguments
         if (bundle != null) {
             val selectedManufacturerId = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_KEY, "")
-            presenter = MainTypesPresenter(selectedManufacturerId, this)
+            val selectedManufacturerName = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_NAME, "")
+            presenter = MainTypesPresenter(selectedManufacturerId, selectedManufacturerName, this)
             recyclerAdapter = MainTypeseAdapter(presenter.items, presenter::onItemClick)
         }else{
             throw IllegalArgumentException("selected manufacture id should not be null.")
@@ -85,10 +87,11 @@ class FragMainTypesList: Fragment(), MainTypesView {
         }
     }
 
-    override fun navigateToNextPage(manufacturerId: String, selectedMainType: String) {
+    override fun navigateToNextPage(manufacturerId: String, manufacturerName: String, selectedMainType: String) {
         val fragBuildDates = FragBuildDates()
         val bundle = Bundle()
         bundle.putString(BUNDLE_SELECTED_MANUFACTURE_KEY, manufacturerId)
+        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_NAME, manufacturerName)
         bundle.putString(BUNDLE_SELECTED_MAIN_TYPE_KEY, selectedMainType)
         fragBuildDates.arguments = bundle
 

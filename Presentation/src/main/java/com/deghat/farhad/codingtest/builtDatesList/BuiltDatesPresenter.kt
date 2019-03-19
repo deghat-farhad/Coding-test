@@ -11,6 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class BuiltDatesPresenter(private val manufacturerId: String,
+                          private val manufacturerName: String,
                           private val mainType: String,
                           private val builtDatesView: BuiltDatesView) {
     val items = ArrayList<BuiltDatesItem.BuiltDate>()
@@ -18,7 +19,7 @@ class BuiltDatesPresenter(private val manufacturerId: String,
 
 
     fun onItemClick(selectedBuiltDate: String){
-        builtDatesView.navigateToNextPage(manufacturerId, selectedBuiltDate)
+        builtDatesView.navigateToNextPage(manufacturerId, manufacturerName, mainType, selectedBuiltDate)
     }
 
     fun initiate() {

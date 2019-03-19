@@ -5,5 +5,5 @@ import com.deghat.farhad.codingtest.CommonView
 interface BuiltDatesView: CommonView {
     fun notifyItemRangeInserted(positionStart: Int, itemCount: Int)
     fun setSummary()
-    fun navigateToNextPage(manufacturerId: String, selectedBuiltDate: String)
+    fun navigateToNextPage(manufacturerId: String, manufacturerName: String, mainType: String, selectedBuiltDate: String)
 }

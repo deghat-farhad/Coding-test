@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 
 class MainTypesPresenter(private val manufacturerId: String,
+                         private val manufacturerName: String,
                          private val mainTypesView: MainTypesView) {
 
     private val inProgressUseCases = arrayListOf<GetMainTypes>()
@@ -33,7 +34,7 @@ class MainTypesPresenter(private val manufacturerId: String,
     }
 
     fun onItemClick (selectedMainType: String){
-        mainTypesView.navigateToNextPage(manufacturerId, selectedMainType)
+        mainTypesView.navigateToNextPage(manufacturerId, manufacturerName, selectedMainType)
     }
 
     fun loadItems() {

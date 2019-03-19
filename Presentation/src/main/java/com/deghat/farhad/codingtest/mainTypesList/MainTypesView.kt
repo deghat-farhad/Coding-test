@@ -8,6 +8,6 @@ interface MainTypesView: CommonView {
     fun hideSearchView()
     fun setSummary()
     fun setItems(mainTypes: ArrayList<MainTypesItem.MainType>)
-    fun navigateToNextPage(manufacturerId: String, selectedMainType: String)
+    fun navigateToNextPage(manufacturerId: String, manufacturerName: String, selectedMainType: String)
 
 }

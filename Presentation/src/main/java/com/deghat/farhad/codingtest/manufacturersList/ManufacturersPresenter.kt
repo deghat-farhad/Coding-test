@@ -56,8 +56,8 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
         loadMore()
     }
 
-    fun onItemClick(selectedManufacturer: String) {
-        manufacturersView.navigateToNextPage(selectedManufacturer)
+    fun onItemClick(selectedManufacturerId: String, selectedManufacturerName: String) {
+        manufacturersView.navigateToNextPage(selectedManufacturerId, selectedManufacturerName)
     }
 
     private fun loadItems(pageNumber: Int, pageSize: Int) {

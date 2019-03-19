@@ -11,9 +11,12 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.deghat.farhad.codingtest.R
+import com.deghat.farhad.codingtest.Summary.FragSummary
 import com.deghat.farhad.codingtest.mainTypesList.BUNDLE_SELECTED_MAIN_TYPE_KEY
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_KEY
+import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_NAME
 
+const val BUNDLE_SELECTED_BUILT_DATE_KEY = "selectedBuiltDate"
 class FragBuildDates: Fragment(), BuiltDatesView {
 
     private lateinit var layoutView: View
@@ -32,8 +35,9 @@ class FragBuildDates: Fragment(), BuiltDatesView {
         val bundle = this.arguments
         if (bundle != null) {
             val selectedManufacturerId = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_KEY, "")
+            val selectedManufacturerName = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_NAME, "")
             val selectedMainType = bundle.getString(BUNDLE_SELECTED_MAIN_TYPE_KEY, "")
-            presenter = BuiltDatesPresenter(selectedManufacturerId, selectedMainType, this)
+            presenter = BuiltDatesPresenter(selectedManufacturerId, selectedManufacturerName, selectedMainType, this)
             recyclerAdapter = BuiltDatesAdapter(presenter.items, presenter::onItemClick)
         }else{
             throw NullPointerException("selected built date should not be null.")
@@ -66,8 +70,25 @@ class FragBuildDates: Fragment(), BuiltDatesView {
         recyclerAdapter.notifyItemRangeInserted(positionStart, itemCount)
     }
 
-    override fun navigateToNextPage(manufacturerId: String, selectedBuiltDate: String) {
+    override fun navigateToNextPage(manufacturerId: String, manufacturerName: String, mainType: String, selectedBuiltDate: String) {
+        val fragSummary = FragSummary()
+        val bundle = Bundle()
+        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_KEY, manufacturerId)
+        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_NAME, manufacturerName)
+        bundle.putString(BUNDLE_SELECTED_MAIN_TYPE_KEY, mainType)
+        bundle.putString(BUNDLE_SELECTED_BUILT_DATE_KEY, selectedBuiltDate)
+        fragSummary.arguments = bundle
 
+        fragmentManager?.beginTransaction()
+                ?.setCustomAnimations(
+                        R.anim.slide_left_enter,
+                        R.anim.slide_left_exit,
+                        R.anim.slide_right_enter,
+                        R.anim.slide_right_exit)
+                ?.replace(R.id.frameLayout, fragSummary
+                        , getString(R.string.fragSummaryTag))
+                ?.addToBackStack(getString(R.string.fragSummaryTag))
+                ?.commit()
     }
 
     override fun setSummary() {

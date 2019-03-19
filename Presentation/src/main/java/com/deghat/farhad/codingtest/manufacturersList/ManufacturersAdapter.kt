@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.deghat.farhad.codingtest.R
 import com.deghat.farhad.codingtest.model.ManufacturersItem
-import kotlin.reflect.KFunction1
+import kotlin.reflect.KFunction2
 
 
 class ManufacturersAdapter(
         private var wkda: ArrayList<ManufacturersItem.Manufacturer>,
-        private var onItemClickListener: KFunction1<@ParameterName(name = "selectedManufacturer") String, Unit>,
+        private var onItemClickListener: KFunction2<@ParameterName(name = "selectedManufacturerId") String, @ParameterName(name = "selectedManufacturerName") String, Unit>,
         private var onRetryClickListener: () -> Unit
     ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -51,7 +51,7 @@ class ManufacturersAdapter(
                 val manufacturerHolder = holder as ManufacturerHolder
                 manufacturerHolder.txtViewManufacturer.text = wkda[position].value
                 manufacturerHolder.manufacturerHolderRoot.setOnClickListener {
-                    onItemClickListener(wkda[position].key)
+                    onItemClickListener(wkda[position].key, wkda[position].value)
                 }
             }
             HolderType.ERROR.value ->
