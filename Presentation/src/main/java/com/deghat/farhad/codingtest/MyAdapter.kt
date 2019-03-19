@@ -1,13 +1,11 @@
-package com.deghat.farhad.codingtest.manufacturersList
+package com.deghat.farhad.codingtest
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.deghat.farhad.codingtest.R
 import com.deghat.farhad.codingtest.model.MainTypesItem
-import com.deghat.farhad.codingtest.model.ManufacturersItem
 
 class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".manufacturersList.ActMain">
+        <activity android:name=".ActMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

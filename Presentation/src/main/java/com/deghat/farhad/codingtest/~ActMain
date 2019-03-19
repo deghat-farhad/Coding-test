@@ -1,4 +1,4 @@
-package com.deghat.farhad.codingtest.manufacturersList
+package com.deghat.farhad.codingtest
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,11 +8,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.deghat.farhad.codingtest.R
 import com.deghat.farhad.codingtest.mainTypesList.MainTypesPresenter
 import com.deghat.farhad.codingtest.mainTypesList.MainTypesView
 import com.deghat.farhad.codingtest.model.MainTypesItem
-import com.deghat.farhad.codingtest.model.ManufacturersItem
 
 class ActMain : AppCompatActivity(), MainTypesView {
 

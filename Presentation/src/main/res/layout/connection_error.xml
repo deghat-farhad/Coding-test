@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ImgViwConnectionError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/connectionError"
+        android:src="@drawable/ic_sad_cloud" />
+
+    <TextView
+        android:id="@+id/TxtViwConnectionError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connectionError"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtViwRetry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableStart="@drawable/ic_retry"
+        android:drawableLeft="@drawable/ic_retry"
+        android:text="@string/tap_to_retry"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="15sp" />
+
+</LinearLayout>

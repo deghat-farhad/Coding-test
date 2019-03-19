@@ -19,7 +19,9 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
     private var totalPages = 0
     private var isFirstLoad = true
     private var isLoading = false
-    private val items = ArrayList<ManufacturersItem.Manufacturer>()
+    private var isNeededToLoadMore = false
+    private var isUnableToLoad = false
+    val items = ArrayList<ManufacturersItem.Manufacturer>()
 
     fun initiate(){
         manufacturersView.setItems(items)
@@ -27,15 +29,36 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
     }
 
     fun loadMore(){
-        if(!isLoading) {
+        if(!isLoading && !isUnableToLoad) {
             if (isFirstLoad || (nextPage < totalPages))
                 loadItems(nextPage, ITEMS_ON_EACH_PAGE)
         }
     }
 
-    fun destroy(){
+    fun stop(){
         for(inProgressUseCase in inProgressUseCases)
             inProgressUseCase.dispose()
+        if(isLoading){
+            isLoading = false
+            isNeededToLoadMore = true
+            manufacturersView.hideProgress()
+        }
+    }
+
+    fun resume(){
+        if(isNeededToLoadMore) {
+            loadMore()
+            isNeededToLoadMore = false
+        }
+    }
+
+    fun retry(){
+        isUnableToLoad = false
+        loadMore()
+    }
+
+    fun onItemClick(selectedManufacturer: String) {
+        manufacturersView.navigateToNextPage(selectedManufacturer)
     }
 
     private fun loadItems(pageNumber: Int, pageSize: Int) {
@@ -73,6 +96,7 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
                 manufacturersView.hideProgress()
                 manufacturersView.showConnectionError()
                 isLoading = false
+                isUnableToLoad = true
             }
         }
 
