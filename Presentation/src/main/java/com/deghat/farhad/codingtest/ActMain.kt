@@ -19,7 +19,6 @@ class ActMain : AppCompatActivity(), ActMainView {
     override fun launchFragment() {
         supportFragmentManager.beginTransaction().add(R.id.frameLayout, FragManufacturerList()
         , getString(R.string.fragManufacturerListTag))
-                .addToBackStack(getString(R.string.fragManufacturerListTag))
                 .commit()
     }
 }
