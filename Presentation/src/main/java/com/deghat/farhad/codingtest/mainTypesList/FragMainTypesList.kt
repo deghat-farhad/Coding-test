@@ -10,10 +10,11 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.deghat.farhad.codingtest.R
+import com.deghat.farhad.codingtest.builtDatesList.FragBuildDates
 import com.deghat.farhad.codingtest.model.MainTypesItem
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_KEY
 
-
+const val BUNDLE_SELECTED_MAIN_TYPE_KEY = "selectedMainType"
 class FragMainTypesList: Fragment(), MainTypesView {
 
     private lateinit var layoutView: View
@@ -81,6 +82,25 @@ class FragMainTypesList: Fragment(), MainTypesView {
             layoutManager = viewManager
             adapter = recyclerAdapter
         }
+    }
+
+    override fun navigateToNextPage(manufacturerId: String, selectedMainType: String) {
+        val fragBuildDates = FragBuildDates()
+        val bundle = Bundle()
+        bundle.putString(BUNDLE_SELECTED_MANUFACTURE_KEY, manufacturerId)
+        bundle.putString(BUNDLE_SELECTED_MAIN_TYPE_KEY, selectedMainType)
+        fragBuildDates.arguments = bundle
+
+        fragmentManager?.beginTransaction()
+                ?.setCustomAnimations(
+                        R.anim.slide_left_enter,
+                        R.anim.slide_left_exit,
+                        R.anim.slide_right_enter,
+                        R.anim.slide_right_exit)
+                ?.replace(R.id.frameLayout, fragBuildDates
+                        , getString(R.string.fragBuiltDatesTag))
+                ?.addToBackStack(getString(R.string.fragBuiltDatesTag))
+                ?.commit()
     }
 
     override fun showSearchView() {

@@ -9,4 +9,5 @@
     <string name="connectionError">Can\'t Connect</string>
     <string name="tap_to_retry">Tap to Retry</string>
     <string name="search">Search</string>
+    <string name="fragBuiltDatesTag">FragBuiltDatesTag</string>
 </resources>

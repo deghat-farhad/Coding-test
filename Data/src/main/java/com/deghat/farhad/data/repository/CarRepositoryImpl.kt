@@ -19,7 +19,7 @@ class CarRepositoryImpl: CarRepository {
         return Remote().getMainType(manufacturerId, pageNumber, pageSize).map { MainTypesMapper().mapToDomain(it) }
     }
 
-    override fun getBuiltDates(manufacturerId: Int, mainType: String): Observable<BuiltDates> {
+    override fun getBuiltDates(manufacturerId: String, mainType: String): Observable<BuiltDates> {
         return Remote().getBuiltDates(manufacturerId, mainType).map { BuiltDatesMapper().mapToDomain(it) }
     }
 }

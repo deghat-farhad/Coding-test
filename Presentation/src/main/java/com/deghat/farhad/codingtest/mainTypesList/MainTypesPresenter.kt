@@ -33,7 +33,7 @@ class MainTypesPresenter(private val manufacturerId: String,
     }
 
     fun onItemClick (selectedMainType: String){
-
+        mainTypesView.navigateToNextPage(manufacturerId, selectedMainType)
     }
 
     fun loadItems() {

@@ -17,6 +17,6 @@ class GetBuiltDates(
 }
 
 data class GetBuiltDatesParams(
-        val manufacturerId: Int,
+        val manufacturerId: String,
         val mainType: String
 )

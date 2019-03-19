@@ -24,7 +24,7 @@ interface CarService {
 
     //@GET("v1/car-types/built-dates")
     @GET("5c8f2ec4300000152a1b1104")
-    fun getBuiltDates(@Query("manufacturer") manufacturerId: Int,
+    fun getBuiltDates(@Query("manufacturer") manufacturerId: String,
                       @Query("main-type") mainType: String,
                       @Query("wa_key") waKey: String): Observable<BuiltDatesEntity>
 }

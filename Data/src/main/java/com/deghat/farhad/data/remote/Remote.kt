@@ -19,7 +19,7 @@ class Remote {
                 .getMainTypes(manufacturerId, pageNumber, pageSize, WA_KEY)
     }
 
-    fun getBuiltDates(manufacturerId: Int, mainType: String): Observable<BuiltDatesEntity>{
+    fun getBuiltDates(manufacturerId: String, mainType: String): Observable<BuiltDatesEntity>{
         return ServiceGenerator.carService.getBuiltDates(manufacturerId, mainType, WA_KEY)
     }
 }

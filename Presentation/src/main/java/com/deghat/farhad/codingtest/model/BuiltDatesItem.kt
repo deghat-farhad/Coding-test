@@ -1,5 +1,10 @@
 package com.deghat.farhad.codingtest.model
 
 data class BuiltDatesItem(
-        var wkda: Map<String, String> = mapOf()
-)
+        var wkda: ArrayList<BuiltDate> = arrayListOf()
+){
+    data class BuiltDate(
+            val key: String,
+            val value: String
+    )
+}
