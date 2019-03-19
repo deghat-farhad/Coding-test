@@ -24,6 +24,7 @@ class FragMainTypesList: Fragment(), MainTypesView {
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: MainTypeseAdapter
+    private var searchItem: MenuItem? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         layoutView = inflater.inflate(R.layout.frag_main_types_list, container,
@@ -45,7 +46,7 @@ class FragMainTypesList: Fragment(), MainTypesView {
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         activity?.menuInflater?.inflate(R.menu.search_menu, menu)
-        val searchItem = menu?.findItem(R.id.action_search)
+        searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as SearchView
         searchView.queryHint = context?.resources?.getString(R.string.search)
 
@@ -104,11 +105,11 @@ class FragMainTypesList: Fragment(), MainTypesView {
     }
 
     override fun showSearchView() {
-
+        searchItem?.isVisible = true
     }
 
     override fun hideSearchView() {
-
+        searchItem?.isVisible = false
     }
 
     override fun setSummary() {
