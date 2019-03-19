@@ -10,9 +10,11 @@ class ActMain : AppCompatActivity(), ActMainView {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_main)
-        launchFragment()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        if(savedInstanceState == null)
+            launchFragment()
+
         setSupportActionBar(toolbar)
     }
 
