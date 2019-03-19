@@ -10,6 +10,7 @@ import com.deghat.farhad.codingtest.R
 import com.deghat.farhad.codingtest.builtDatesList.BUNDLE_SELECTED_BUILT_DATE_KEY
 import com.deghat.farhad.codingtest.mainTypesList.BUNDLE_SELECTED_MAIN_TYPE_KEY
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_NAME
+import kotlinx.android.synthetic.main.act_main.*
 
 class FragSummary: Fragment(), SummaryView {
 
@@ -42,6 +43,7 @@ class FragSummary: Fragment(), SummaryView {
         txtViwManufacturer = layoutView.findViewById(R.id.TxtViwManufacturer)
         txtViwMainType = layoutView.findViewById(R.id.txtViwMainType)
         txtViwBuiltDate = layoutView.findViewById(R.id.txtViwBuiltDate)
+        activity?.toolbar?.title = activity?.resources?.getString(R.string.summary)
     }
 
     override fun setSummary(manufacturerName: String, mainType: String, builtDates: String) {

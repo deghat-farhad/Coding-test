@@ -11,4 +11,6 @@
     <string name="search">Search</string>
     <string name="fragBuiltDatesTag">FragBuiltDatesTag</string>
     <string name="fragSummaryTag">FragSummaryTag</string>
+    <string name="summary">Summary</string>
+    <string name="manufacturers">Manufacturers</string>
 </resources>

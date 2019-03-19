@@ -45,6 +45,7 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
     }
 
     fun resume(){
+        manufacturersView.resetTitle()
         if(isNeededToLoadMore) {
             loadMore()
             isNeededToLoadMore = false

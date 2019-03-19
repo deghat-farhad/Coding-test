@@ -19,8 +19,13 @@ class MainTypesPresenter(private val manufacturerId: String,
     val items = ArrayList<MainTypesItem.MainType>()
 
     fun initiate() {
+        mainTypesView.setSummary(manufacturerName)
         mainTypesView.setItems(items)
         loadItems()
+    }
+
+    fun resume(){
+        mainTypesView.setSummary(manufacturerName)
     }
 
     fun destroy() {

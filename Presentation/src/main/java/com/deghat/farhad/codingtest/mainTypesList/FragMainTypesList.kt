@@ -14,6 +14,7 @@ import com.deghat.farhad.codingtest.builtDatesList.FragBuildDates
 import com.deghat.farhad.codingtest.model.MainTypesItem
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_KEY
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_NAME
+import kotlinx.android.synthetic.main.act_main.*
 
 const val BUNDLE_SELECTED_MAIN_TYPE_KEY = "selectedMainType"
 class FragMainTypesList: Fragment(), MainTypesView {
@@ -68,6 +69,11 @@ class FragMainTypesList: Fragment(), MainTypesView {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.resume()
+    }
+
     private fun initiate() {
         progressBar = layoutView.findViewById(R.id.progressBar)
         errorView = layoutView.findViewById(R.id.connectionErrorView)
@@ -115,8 +121,8 @@ class FragMainTypesList: Fragment(), MainTypesView {
         searchItem?.isVisible = false
     }
 
-    override fun setSummary() {
-
+    override fun setSummary(manufacturerName: String) {
+        activity?.toolbar?.title = manufacturerName
     }
 
     override fun setItems(mainTypes: ArrayList<MainTypesItem.MainType>) {

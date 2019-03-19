@@ -15,6 +15,7 @@ import com.deghat.farhad.codingtest.Summary.FragSummary
 import com.deghat.farhad.codingtest.mainTypesList.BUNDLE_SELECTED_MAIN_TYPE_KEY
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_KEY
 import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_NAME
+import kotlinx.android.synthetic.main.act_main.*
 
 const val BUNDLE_SELECTED_BUILT_DATE_KEY = "selectedBuiltDate"
 class FragBuildDates: Fragment(), BuiltDatesView {
@@ -45,6 +46,11 @@ class FragBuildDates: Fragment(), BuiltDatesView {
 
         initiate()
         return layoutView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.resume()
     }
 
     private fun initiate() {
@@ -91,8 +97,8 @@ class FragBuildDates: Fragment(), BuiltDatesView {
                 ?.commit()
     }
 
-    override fun setSummary() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setSummary(manufacturerName: String, mainType: String) {
+        activity?.toolbar?.title = "$manufacturerName - $mainType"
     }
 
     override fun showProgress() {

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.deghat.farhad.codingtest.R
 import com.deghat.farhad.codingtest.mainTypesList.FragMainTypesList
+import kotlinx.android.synthetic.main.act_main.*
 
 const val BUNDLE_SELECTED_MANUFACTURE_KEY = "selectedManufactureId"
 const val BUNDLE_SELECTED_MANUFACTURE_NAME = "selectedManufactureValue"
@@ -38,6 +39,8 @@ class FragManufacturerList: Fragment(), ManufacturersView{
         progressBar = layoutView.findViewById(R.id.progressBar)
         errorView = layoutView.findViewById(R.id.connectionErrorView)
         viewManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
+        activity?.toolbar?.title = activity?.resources?.getString(R.string.manufacturers)
+
 
         setupRecyclerView()
         setOnScrollListener()
@@ -142,5 +145,9 @@ class FragManufacturerList: Fragment(), ManufacturersView{
     override fun onResume() {
         super.onResume()
         presenter.resume()
+    }
+
+    override fun resetTitle() {
+        activity?.toolbar?.title = activity?.resources?.getString(R.string.manufacturers)
     }
 }
