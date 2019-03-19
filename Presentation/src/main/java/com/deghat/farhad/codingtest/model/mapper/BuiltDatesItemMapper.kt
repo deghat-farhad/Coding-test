@@ -7,7 +7,7 @@ class BuiltDatesItemMapper {
     fun mapToPresentation(builtDates: BuiltDates): BuiltDatesItem{
 
         val builtDatesList = arrayListOf<BuiltDatesItem.BuiltDate>()
-        for (builtDate in builtDates.wkda){
+        for (builtDate in builtDates.wkda.toSortedMap()){
             builtDatesList.add(BuiltDatesItem.BuiltDate(builtDate.key, builtDate.value))
         }
 
