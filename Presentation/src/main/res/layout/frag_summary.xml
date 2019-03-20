@@ -2,25 +2,94 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
 
+
+    <TextView
+        android:id="@+id/TxtViwManufacturerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:drawableStart="@drawable/ic_info"
+        android:drawableLeft="@drawable/ic_info"
+        android:drawablePadding="3dp"
+        android:text="Manufacturer"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/TxtViwManufacturer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Manufacturer" />
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="34dp"
+        android:padding="3dp"
+        android:text="test"
+        android:textSize="17sp"
+        android:textColor="@color/blue"/>
+
+
+    <TextView
+        android:id="@+id/txtViwMainTypeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:drawableStart="@drawable/ic_info"
+        android:drawableLeft="@drawable/ic_info"
+        android:drawablePadding="3dp"
+        android:text="Main Type"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtViwMainType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MainType" />
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="34dp"
+        android:padding="3dp"
+        android:text="test"
+        android:textSize="17sp"
+        android:textColor="@color/blue"/>
+
+
+
+    <TextView
+        android:id="@+id/txtViwBuiltDateTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:drawableStart="@drawable/ic_info"
+        android:drawableLeft="@drawable/ic_info"
+        android:drawablePadding="3dp"
+        android:text="Built Date"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtViwBuiltDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BuiltDate" />
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="34dp"
+        android:padding="3dp"
+        android:text="test"
+        android:textSize="17sp"
+        android:textColor="@color/blue"/>
+
+
+
+
 </LinearLayout>
