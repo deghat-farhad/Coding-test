@@ -31,6 +31,12 @@ class BuiltDatesPresenter(private val manufacturerId: String,
     fun resume(){
         builtDatesView.setSummary(manufacturerName, mainType)
     }
+
+    fun stop() {
+        for (inProgressUseCase in inProgressUseCases)
+            inProgressUseCase.dispose()
+    }
+
     fun loadItems() {
         builtDatesView.showProgress()
 

@@ -29,7 +29,7 @@ class MainTypesPresenter(private val manufacturerId: String,
         mainTypesView.setSummary(manufacturerName)
     }
 
-    fun destroy() {
+    fun stop() {
         for (inProgressUseCase in inProgressUseCases)
             inProgressUseCase.dispose()
     }

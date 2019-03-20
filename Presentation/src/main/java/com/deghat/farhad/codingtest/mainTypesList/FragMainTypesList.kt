@@ -74,6 +74,11 @@ class FragMainTypesList: Fragment(), MainTypesView {
         presenter.resume()
     }
 
+    override fun onStop() {
+        super.onStop()
+        presenter.stop()
+    }
+
     private fun initiate() {
         progressBar = layoutView.findViewById(R.id.progressBar)
         errorView = layoutView.findViewById(R.id.connectionErrorView)
