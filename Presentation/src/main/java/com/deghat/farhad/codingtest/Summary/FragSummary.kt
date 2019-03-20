@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.deghat.farhad.codingtest.R
-import com.deghat.farhad.codingtest.builtDatesList.BUNDLE_SELECTED_BUILT_DATE_KEY
-import com.deghat.farhad.codingtest.mainTypesList.BUNDLE_SELECTED_MAIN_TYPE_KEY
-import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_NAME
+import com.deghat.farhad.codingtest.builtDatesList.view.BUNDLE_SELECTED_BUILT_DATE_KEY
+import com.deghat.farhad.codingtest.mainTypesList.view.BUNDLE_SELECTED_MAIN_TYPE_KEY
+import com.deghat.farhad.codingtest.manufacturersList.view.BUNDLE_SELECTED_MANUFACTURE_NAME
 import kotlinx.android.synthetic.main.act_main.*
 
 class FragSummary: Fragment(), SummaryView {

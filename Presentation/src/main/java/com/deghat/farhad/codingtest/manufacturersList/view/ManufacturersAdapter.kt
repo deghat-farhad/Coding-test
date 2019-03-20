@@ -1,4 +1,4 @@
-package com.deghat.farhad.codingtest.manufacturersList
+package com.deghat.farhad.codingtest.manufacturersList.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

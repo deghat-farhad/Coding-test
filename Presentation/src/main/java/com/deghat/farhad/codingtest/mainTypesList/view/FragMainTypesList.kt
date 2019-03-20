@@ -1,4 +1,4 @@
-package com.deghat.farhad.codingtest.mainTypesList
+package com.deghat.farhad.codingtest.mainTypesList.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,10 +10,12 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.deghat.farhad.codingtest.R
-import com.deghat.farhad.codingtest.builtDatesList.FragBuildDates
+import com.deghat.farhad.codingtest.builtDatesList.view.FragBuildDates
+import com.deghat.farhad.codingtest.mainTypesList.MainTypesPresenter
+import com.deghat.farhad.codingtest.mainTypesList.MainTypesView
 import com.deghat.farhad.codingtest.model.MainTypesItem
-import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_KEY
-import com.deghat.farhad.codingtest.manufacturersList.BUNDLE_SELECTED_MANUFACTURE_NAME
+import com.deghat.farhad.codingtest.manufacturersList.view.BUNDLE_SELECTED_MANUFACTURE_KEY
+import com.deghat.farhad.codingtest.manufacturersList.view.BUNDLE_SELECTED_MANUFACTURE_NAME
 import kotlinx.android.synthetic.main.act_main.*
 
 const val BUNDLE_SELECTED_MAIN_TYPE_KEY = "selectedMainType"

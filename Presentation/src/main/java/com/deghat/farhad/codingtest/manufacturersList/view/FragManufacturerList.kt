@@ -1,4 +1,4 @@
-package com.deghat.farhad.codingtest.manufacturersList
+package com.deghat.farhad.codingtest.manufacturersList.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,13 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.deghat.farhad.codingtest.R
-import com.deghat.farhad.codingtest.mainTypesList.FragMainTypesList
+import com.deghat.farhad.codingtest.mainTypesList.view.FragMainTypesList
+import com.deghat.farhad.codingtest.manufacturersList.ManufacturersPresenter
+import com.deghat.farhad.codingtest.manufacturersList.ManufacturersView
 import kotlinx.android.synthetic.main.act_main.*
 
 const val BUNDLE_SELECTED_MANUFACTURE_KEY = "selectedManufactureId"
 const val BUNDLE_SELECTED_MANUFACTURE_NAME = "selectedManufactureValue"
 
-class FragManufacturerList: Fragment(), ManufacturersView{
+class FragManufacturerList: Fragment(), ManufacturersView {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var errorView: View

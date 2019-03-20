@@ -1,4 +1,4 @@
-package com.deghat.farhad.codingtest.builtDatesList
+package com.deghat.farhad.codingtest.manufacturersList.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.deghat.farhad.codingtest.R
 
 
-class BuiltDateHolder(holderView: View): RecyclerView.ViewHolder(holderView) {
+class ManufacturerHolder(holderView: View): RecyclerView.ViewHolder(holderView) {
     val txtViewManufacturer: TextView = holderView.findViewById(R.id.txtViwManufacturer)
     val manufacturerHolderRoot: LinearLayout = holderView.findViewById(R.id.holderRoot)
 }
