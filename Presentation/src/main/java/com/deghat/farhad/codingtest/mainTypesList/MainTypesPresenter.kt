@@ -2,6 +2,7 @@ package com.deghat.farhad.codingtest.mainTypesList
 
 import com.deghat.farhad.codingtest.model.MainTypesItem
 import com.deghat.farhad.codingtest.model.mapper.MainTypesItemMapper
+import com.deghat.farhad.data.di.DaggerDataComponent
 import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.MainTypes
 import com.deghat.farhad.domain.usecase.GetMainTypes
@@ -77,7 +78,7 @@ class MainTypesPresenter(private val manufacturerId: String,
 
         val getMainTypesParams = GetMainTypesParams(manufacturerId)
 
-        val getMainTypes = GetMainTypes(CarRepositoryImpl(),
+        val getMainTypes = GetMainTypes(DaggerDataComponent.builder().build().getCarRepositoryImpl(),
                 Schedulers.io(), AndroidSchedulers.mainThread())
 
         inProgressUseCases.add(getMainTypes)

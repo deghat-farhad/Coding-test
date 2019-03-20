@@ -9,17 +9,17 @@ const val BASE_URL = "***REMOVED***"
 const val WA_KEY = "***REMOVED***"
 //const val BASE_URL = "http://www.mocky.io/v2/"
 
-class Remote {
+class Remote(private val serviceGenerator: ServiceGenerator) {
     fun getManufacturer(pageNumber: Int, pageSize: Int): Observable<ManufacturersEntity>{
-        return ServiceGenerator.carService.getManufacturer(pageNumber, pageSize, WA_KEY)
+        return serviceGenerator.carService.getManufacturer(pageNumber, pageSize, WA_KEY)
     }
 
     fun getMainType(manufacturerId: String, pageNumber: Int, pageSize: Int): Observable<MainTypesEntity>{
-        return ServiceGenerator.carService
+        return serviceGenerator.carService
                 .getMainTypes(manufacturerId, pageNumber, pageSize, WA_KEY)
     }
 
     fun getBuiltDates(manufacturerId: String, mainType: String): Observable<BuiltDatesEntity>{
-        return ServiceGenerator.carService.getBuiltDates(manufacturerId, mainType, WA_KEY)
+        return serviceGenerator.carService.getBuiltDates(manufacturerId, mainType, WA_KEY)
     }
 }

@@ -2,6 +2,7 @@ package com.deghat.farhad.codingtest.builtDatesList
 
 import com.deghat.farhad.codingtest.model.BuiltDatesItem
 import com.deghat.farhad.codingtest.model.mapper.BuiltDatesItemMapper
+import com.deghat.farhad.data.di.DaggerDataComponent
 import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.BuiltDates
 import com.deghat.farhad.domain.usecase.GetBuiltDates
@@ -62,7 +63,7 @@ class BuiltDatesPresenter(private val manufacturerId: String,
 
         val getBuiltDatesParams = GetBuiltDatesParams(manufacturerId, mainType)
 
-        val getBuiltDates = GetBuiltDates(CarRepositoryImpl(),
+        val getBuiltDates = GetBuiltDates(DaggerDataComponent.builder().build().getCarRepositoryImpl(),
                 Schedulers.io(), AndroidSchedulers.mainThread())
 
         inProgressUseCases.add(getBuiltDates)

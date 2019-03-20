@@ -10,16 +10,16 @@ import com.deghat.farhad.domain.model.Manufacturers
 import com.deghat.farhad.domain.repository.CarRepository
 import io.reactivex.Observable
 
-class CarRepositoryImpl: CarRepository {
+class CarRepositoryImpl(private val remote: Remote): CarRepository {
     override fun getManufacturer(pageNumber: Int, pageSize: Int): Observable<Manufacturers> {
-        return Remote().getManufacturer(pageNumber, pageSize).map { ManufacturersMapper().mapToDomain(it) }
+        return remote.getManufacturer(pageNumber, pageSize).map { ManufacturersMapper.mapToDomain(it) }
     }
 
     override fun getMainTypes(manufacturerId: String, pageNumber: Int, pageSize: Int): Observable<MainTypes> {
-        return Remote().getMainType(manufacturerId, pageNumber, pageSize).map { MainTypesMapper().mapToDomain(it) }
+        return remote.getMainType(manufacturerId, pageNumber, pageSize).map { MainTypesMapper.mapToDomain(it) }
     }
 
     override fun getBuiltDates(manufacturerId: String, mainType: String): Observable<BuiltDates> {
-        return Remote().getBuiltDates(manufacturerId, mainType).map { BuiltDatesMapper().mapToDomain(it) }
+        return remote.getBuiltDates(manufacturerId, mainType).map { BuiltDatesMapper.mapToDomain(it) }
     }
 }

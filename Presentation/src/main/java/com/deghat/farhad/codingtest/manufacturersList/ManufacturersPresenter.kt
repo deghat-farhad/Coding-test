@@ -2,6 +2,7 @@ package com.deghat.farhad.codingtest.manufacturersList
 
 import com.deghat.farhad.codingtest.model.ManufacturersItem
 import com.deghat.farhad.codingtest.model.mapper.ManufacturersItemMapper
+import com.deghat.farhad.data.di.DaggerDataComponent
 import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.Manufacturers
 import com.deghat.farhad.domain.usecase.GetManufacturers
@@ -102,7 +103,7 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
 
         val getManufacturerParams = GetManufacturerParams(pageNumber, pageSize)
 
-        val getManufacturers = GetManufacturers(CarRepositoryImpl(),
+        val getManufacturers = GetManufacturers(DaggerDataComponent.builder().build().getCarRepositoryImpl(),
                 Schedulers.io(), AndroidSchedulers.mainThread())
 
         inProgressUseCases.add(getManufacturers)
