@@ -3,7 +3,6 @@ package com.deghat.farhad.codingtest.mainTypesList
 import com.deghat.farhad.codingtest.model.MainTypesItem
 import com.deghat.farhad.codingtest.model.mapper.MainTypesItemMapper
 import com.deghat.farhad.data.di.DaggerDataComponent
-import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.MainTypes
 import com.deghat.farhad.domain.usecase.GetMainTypes
 import com.deghat.farhad.domain.usecase.GetMainTypesParams
@@ -12,17 +11,23 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class MainTypesPresenter(private val manufacturerId: String,
-                         private val manufacturerName: String,
-                         private val mainTypesView: MainTypesView) {
+class MainTypesPresenter {
+
+    private lateinit var manufacturerId: String
+    private lateinit var manufacturerName: String
+    private lateinit var mainTypesView: MainTypesView
 
     private val inProgressUseCases = arrayListOf<GetMainTypes>()
     val items = ArrayList<MainTypesItem.MainType>()
 
-    fun initiate() {
+    fun initiate(selectedManufacturerId: String, selectedManufacturerName: String, mainTypesView: MainTypesView) {
+        this.mainTypesView = mainTypesView
+        manufacturerId = selectedManufacturerId
+        manufacturerName = selectedManufacturerName
         mainTypesView.setSummary(manufacturerName)
         mainTypesView.setItems(items)
-        loadItems()
+        if(items.isEmpty())
+            loadItems()
     }
 
     fun resume(){

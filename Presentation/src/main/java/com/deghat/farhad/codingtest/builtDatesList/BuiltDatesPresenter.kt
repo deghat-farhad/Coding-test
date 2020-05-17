@@ -1,9 +1,9 @@
 package com.deghat.farhad.codingtest.builtDatesList
 
+import com.deghat.farhad.codingtest.builtDatesList.view.FragBuildDates
 import com.deghat.farhad.codingtest.model.BuiltDatesItem
 import com.deghat.farhad.codingtest.model.mapper.BuiltDatesItemMapper
 import com.deghat.farhad.data.di.DaggerDataComponent
-import com.deghat.farhad.data.repository.CarRepositoryImpl
 import com.deghat.farhad.domain.model.BuiltDates
 import com.deghat.farhad.domain.usecase.GetBuiltDates
 import com.deghat.farhad.domain.usecase.GetBuiltDatesParams
@@ -11,10 +11,13 @@ import com.deghat.farhad.domain.usecase.base.DefaultObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class BuiltDatesPresenter(private val manufacturerId: String,
-                          private val manufacturerName: String,
-                          private val mainType: String,
-                          private val builtDatesView: BuiltDatesView) {
+class BuiltDatesPresenter {
+
+    private lateinit var manufacturerId: String
+    private lateinit var manufacturerName: String
+    private lateinit var mainType: String
+    private lateinit var builtDatesView: BuiltDatesView
+
     val items = ArrayList<BuiltDatesItem.BuiltDate>()
     private val inProgressUseCases = arrayListOf<GetBuiltDates>()
 
@@ -23,9 +26,14 @@ class BuiltDatesPresenter(private val manufacturerId: String,
         builtDatesView.navigateToNextPage(manufacturerId, manufacturerName, mainType, selectedBuiltDate)
     }
 
-    fun initiate() {
+    fun initiate(selectedManufacturerId: String, selectedManufacturerName: String, selectedMainType: String, fragBuildDates: FragBuildDates) {
+        manufacturerId = selectedManufacturerId
+        manufacturerName = selectedManufacturerName
+        mainType = selectedMainType
+        builtDatesView = fragBuildDates
         builtDatesView.setSummary(manufacturerName, mainType)
-        loadItems()
+        if(items.isEmpty())
+            loadItems()
     }
 
     fun resume(){

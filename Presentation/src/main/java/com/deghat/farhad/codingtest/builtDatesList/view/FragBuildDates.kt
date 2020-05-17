@@ -25,7 +25,7 @@ class FragBuildDates: Fragment(), BuiltDatesView {
     private lateinit var layoutView: View
     private lateinit var progressBar: ProgressBar
     private lateinit var errorView: View
-    private lateinit var presenter: BuiltDatesPresenter
+    private var presenter= BuiltDatesPresenter()
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: BuiltDatesAdapter
@@ -36,17 +36,21 @@ class FragBuildDates: Fragment(), BuiltDatesView {
         setHasOptionsMenu(true)
 
         val bundle = this.arguments
+
+        val selectedManufacturerId: String
+        val selectedManufacturerName: String
+        val selectedMainType: String
+
         if (bundle != null) {
-            val selectedManufacturerId = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_KEY, "")
-            val selectedManufacturerName = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_NAME, "")
-            val selectedMainType = bundle.getString(BUNDLE_SELECTED_MAIN_TYPE_KEY, "")
-            presenter = BuiltDatesPresenter(selectedManufacturerId, selectedManufacturerName, selectedMainType, this)
+            selectedManufacturerId = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_KEY, "")
+            selectedManufacturerName = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_NAME, "")
+            selectedMainType = bundle.getString(BUNDLE_SELECTED_MAIN_TYPE_KEY, "")
             recyclerAdapter = BuiltDatesAdapter(presenter.items, presenter::onItemClick)
         }else{
             throw NullPointerException("selected built date should not be null.")
         }
 
-        initiate()
+        initiate(selectedManufacturerId, selectedManufacturerName, selectedMainType)
         return layoutView
     }
 
@@ -60,13 +64,13 @@ class FragBuildDates: Fragment(), BuiltDatesView {
         presenter.stop()
     }
 
-    private fun initiate() {
+    private fun initiate(selectedManufacturerId: String, selectedManufacturerName: String, selectedMainType: String) {
         progressBar = layoutView.findViewById(R.id.progressBar)
         errorView = layoutView.findViewById(R.id.connectionErrorView)
         viewManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
 
         setupRecyclerView()
-        presenter.initiate()
+        presenter.initiate(selectedManufacturerId, selectedManufacturerName, selectedMainType, this)
     }
 
     private fun setupRecyclerView() {

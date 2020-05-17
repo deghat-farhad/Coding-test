@@ -24,7 +24,7 @@ class FragMainTypesList: Fragment(), MainTypesView {
     private lateinit var layoutView: View
     private lateinit var progressBar: ProgressBar
     private lateinit var errorView: View
-    private lateinit var presenter: MainTypesPresenter
+    private val presenter = MainTypesPresenter()
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: MainTypeseAdapter
@@ -36,16 +36,18 @@ class FragMainTypesList: Fragment(), MainTypesView {
         setHasOptionsMenu(true)
 
         val bundle = this.arguments
+        val selectedManufacturerId: String
+        val selectedManufacturerName: String
         if (bundle != null) {
-            val selectedManufacturerId = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_KEY, "")
-            val selectedManufacturerName = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_NAME, "")
-            presenter = MainTypesPresenter(selectedManufacturerId, selectedManufacturerName, this)
+            selectedManufacturerId = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_KEY, "")
+            selectedManufacturerName = bundle.getString(BUNDLE_SELECTED_MANUFACTURE_NAME, "")
+
             recyclerAdapter = MainTypeseAdapter(presenter.items, presenter::onItemClick)
         }else{
             throw IllegalArgumentException("selected manufacture id should not be null.")
         }
 
-        initiate()
+        initiate(selectedManufacturerId, selectedManufacturerName)
         return layoutView
     }
 
@@ -81,13 +83,14 @@ class FragMainTypesList: Fragment(), MainTypesView {
         presenter.stop()
     }
 
-    private fun initiate() {
+    private fun initiate(selectedManufacturerId: String, selectedManufacturerName: String) {
         progressBar = layoutView.findViewById(R.id.progressBar)
         errorView = layoutView.findViewById(R.id.connectionErrorView)
         viewManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
+        progressBar.visibility = View.GONE
 
         setupRecyclerView()
-        presenter.initiate()
+        presenter.initiate(selectedManufacturerId, selectedManufacturerName, this)
     }
 
     private fun setupRecyclerView() {

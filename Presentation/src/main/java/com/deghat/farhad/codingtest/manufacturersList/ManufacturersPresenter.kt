@@ -24,8 +24,9 @@ class ManufacturersPresenter(var manufacturersView: ManufacturersView) {
     private var isUnableToLoad = false
     val items = ArrayList<ManufacturersItem.Manufacturer>()
 
-    fun initiate(){
-        loadMore()
+    fun initiate() {
+        if (items.isEmpty())
+            loadMore()
     }
 
     fun loadMore(){
